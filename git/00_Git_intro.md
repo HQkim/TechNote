@@ -14,6 +14,8 @@
 - <-> 중앙형 : 중앙에 절대적인 데이터 저장소가 있음
 - 분산형은 여러 컴퓨터에 데이터를 저장
 
+
+
 ## Git 초기 설정
 
 #### 커밋 작성자(author) 설정
@@ -41,6 +43,8 @@ $ git config --global core.editor "code --wait"
 - 해당 명령어는 반드시 vscode가 설치되어 있어야 함
 
 > 기본 텍스트 편집기 vim을 vscode로 대체하는 것
+
+
 
 ## Repository와 Commit
 
@@ -295,6 +299,7 @@ git diff 9b15 539d
 ### 기타 
 
 - Git은 파일만 관리한다. -> 빈 폴더는 추적하지 않는다.
+- (origin/master) 는 github를 의미한다.
 
 
 
