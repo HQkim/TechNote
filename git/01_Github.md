@@ -66,6 +66,12 @@ Branch 'master' set up to track remote branch 'master' from 'origin'.
 
 - 두번째 push 부터는 `u` 생략 가능
 
+``` bash
+$git push --set-upstream origin master
+```
+
+위와 같이 진행해도 된다.
+
 #### pull
 
 - 원격 저장소의 변경사항을 받아옴 (업데이트)
