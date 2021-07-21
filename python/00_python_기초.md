@@ -2,7 +2,7 @@
 
 
 
-## 식별자
+# 식별자
 
 #### 키워드 / 예약어
 
@@ -21,7 +21,7 @@ print(keyword.kwlist)
 
 
 
-## 데이터 타입
+# 데이터 타입
 
 #### Floating point rounding error
 
@@ -93,6 +93,8 @@ print(a[::-1])
   - value는 모든 값으로 설정 가능 
 
 
+
+# 제어문
 
 ## 조건문
 
@@ -173,6 +175,142 @@ a, b, *lista, c = numbers
 
 print(a, '/', b, '/', *lista, '/', c)
 ```
+
+
+
+# 함수
+
+#### Built-in Functions(내장 함수)
+
+- 파이썬 자체에 내장되어 있는 함수들이다.
+
+```
+# 써본 함수
+abs(), set(), dict(), min(), ascii(), id(), sorted(), enumerate(), input(), int(),
+open(), str(), isinstance(), ord(), sum(), filter(), pow(), float(), print(), tuple(),
+format(), len(), type(), chr(), list(), range(), zip(), map(), max(), round()
+
+# 안써본 함수
+delattr(),hash(),memoryview(),all(), help(), setattr(), any(), dir(), hex(), next(), slice(), divmod(), object(), bin(), oct(), staticmethod(), bool(), eval(), breakpoint(), exec(), bytearray(), issubclass(), super(), bytes(), iter(), callable(), property(), frozenset(), vars(), classmethod(), getattr(),locals(), repr(), compile(), globals(), reversed(), __import__(), complex(), hasattr()
+```
+
+
+
+#### 함수의 리턴 규칙
+
+- 함수 리턴은 무조건 하나. "," 로 구분해도 tuple의 type으로 하나의 객체만 리턴된다.
+
+
+
+#### parameter와 argument
+
+``` python
+def func1(num1, num2): # num1, num2가 parameter(매개변수)
+    return num1 + num2
+
+result = func1(10, 20) # 10, 20이 argument(인수)
+```
+
+-> def 옆에 있는게 parameter.. 데파..데파.. 대파!?
+
+
+
+#### *args, **kwargs
+
+```python
+def func1(*args, **kwargs): 
+    for i in args:
+        print(i)
+    for k, v in kwargs.items():
+        print(f'{k}: {v}')
+
+
+func1(1, 2, 3, a=1, b=2)
+```
+
+- *args는 가변인자리스트(Arbitrary Argument Lists)
+
+  **kwargs 가변 키워드 인자(Arbitrary Keyword Argument)
+
+
+
+#### 위치 인자와 키워드 인자의 순서
+
+```python
+# 에러상황 1
+def greeting(key1 = 'abc', par1):
+	return
+# SyntaxError: non-default argument follows default argument
+
+# 에러상황 2
+def func1(par1, key1 = "a"):
+    return
+func1(par1='1', key2)
+# SyntaxError: positional argument follows keyword argument
+
+
+```
+
+
+
+- 고차함수
+
+- 클로저
+
+- 리터럴
+  - https://wikidocs.net/20562
+
+
+
+# 예외
+
+- 모든 내장된 예외는 Exception Class를 상속받아 이루어져 있음
+
+- 예외처리는 순차적으로 수행되므로 예외는 작은 범주부터 써야 한다.
+
+
+
+- try-except-else-finally
+
+  ```python
+  try:
+      f = open('file.txt')
+  except FileNotFoundError:
+      print('파일 없음')
+  else:
+      print('파일 읽기 시작')
+      print(f.read())
+      print('파일 다 읽었음')
+      f.close()
+  finally:
+      print('파일 읽기 종료')
+  ```
+
+#### raise 
+
+- 강제로 예외를 발생
+
+
+
+#### assert
+
+- 디버깅 시에 사용
+
+
+
+#### EAFP, LBYL 
+
+https://itholic.github.io/python-eafp-lbyl/ 참고
+
+- EAFP
+  - "It's Easier to Ask Forgiveness than Permission"
+  - try - except 스타일
+  - 파이썬에서 권장하는 스타일 https://www.python.org/dev/peps/pep-0463/
+  - 파이썬 코드가 문제 없이 실행될 것을 전제로 코드를 실행
+- LBYL
+  - "Look Before You Leap"
+  - if문 스타일
+  - 어떤 것이 실행하기 전에 에러가 날만한 요소들을 조건문으로 검사를 하고 실행
 
 
 
