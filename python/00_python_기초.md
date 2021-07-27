@@ -271,7 +271,9 @@ print(data, my_dict)
 my_dict = {'apple': "사", 'banana': '바나나'}
 my_dict.update(apple="사과")
 print(my_dict)
-
+# key가 숫자인 경우
+my_dict = {1: "첫번째"}
+my_dict.update({1:"첫번째애"})
 ```
 
 
