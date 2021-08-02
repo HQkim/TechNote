@@ -1,6 +1,15 @@
 # 03_OOP_기초
 
-Object Oriented Programming
+
+
+## OOP(객체지향 프로그래밍)
+
+### 정의
+
+- Object Oriented Programming
+
+- 컴퓨터 프로그램을 명령어의 목록으로 보는 시각에서 벗어나 여러 개의 독립된 단위, 즉 "객체"들의 모임으로 파악하고자 하는 프로그래밍 패러다임의 하나
+- 절차지향 프로그래밍과 보통 비교된다.
 
 
 
@@ -42,17 +51,78 @@ isinstance(10, int)
 isinstance(0, (bool, int, complex))
 ```
 
+#### self
+
+- 인스턴스 자기자신
+- 파이선에서 인스턴스 메서드는 호출 시 첫번째 인자로 인스턴스 자신이 전달되게 설계
+
+#### 생성자(constructor)
+
+- 인스턴스 객체가 생성될 때 호출되는 메서드
+
+``` python
+class Person:
+    def __init__(self, name):
+        print(f'{name}을 가진 인스턴스 객체 생성')
+
+person1 = Person('HQ')
+```
+
+#### 소멸자(destructor)
+
+- 인스턴스 객체가 소멸되기 직전에 호출되는 메서드
+
+```python
+class Person:
+    def __del__(self):
+        print('인스턴스 객체가 소멸됩니다.')
+        
+person1 = Person()
+del person1
+```
+
+#### 매직 메서드
+
+- Double underscore(__)가 있는 메서드는 특수한 동작을 위해 만들어진 메서드로, 스페셜 메서드 혹은 매직 메서드라고 함
+
+- 예시
+
+  ```
+  __str__(self) : 객체의 출력 형태 지정
+  __gt__(self, other) : 부동호 연산자(>, greater than)에 대한 연산처리
+  
+  __len__(self), __repr__(self), __lt__(self, other), __le__(self, other), 
+  __eq__(self, other) __ge__(self, other), __ne__(self, other)
+  
+  
+  ```
+
+### 클래스와 인스턴스
+
+#### 인스턴스 변수와 클래스 변수
+
+``` python
+class Person:
+    number_of_person = 0		# 클래스 변수 정의
+    def __init__(self, name):
+        self.name = name		# 인스턴스 변수 정의
+        Person.number_of_person += 1
+        
+john = Person('john')
+jin = Person('Jin')
+jin.name = 'Jin Kim' # 인스턴스 변수 접근 및 할당
+print(Person.number_of_person) # 클래스 변수 접근
+```
+
+#### 인스턴스와 클래스 간의 이름공간(namespace)
+
+- 클래스를 정의하면, 클래스와 해당하는 이름 공간 생성
+- 인스턴스를 만들면, 인스턴스 객체가 생성되고 이름 공간 생성
+- 인스턴스에서 특정 속성에 접근하면, 인스턴스 - 
 
 
-## OOP(객체지향 프로그래밍)
 
-### 정의
-
-- 컴퓨터 프로그램을 명령어의 목록으로 보는 시각에서 벗어나 여러 개의 독립된 단위, 즉 "객체"들의 모임으로 파악하고자 하는 프로그래밍 패러다임의 하나
-
-- 절차지향 프로그래밍과 보통 비교된다.
-
-
+### 메서드 종류
 
 #### 인스턴스 메서드
 
@@ -108,14 +178,112 @@ MyClass.static_method(...)
 
 
 
-#### 매직 메서드
-
-
-
-
-
 ## 상속
 
-상속 캡슐화 다형성
+### 개요
+
+- 클래스는 상속이 가능하다.
+  - 모든 파이썬 클래스는 object 클래스를 상속 받음
+- 상속을 통해 객체 간의 관계를 구축
+- 부모 클래스의 속성, 메서드가 자식 클래스에 상속되므로 코드 재사용성이 높아짐
+
+
+
+### 상속 check
+
+- isinstance(object, classinfo)
+  - classinfo의 instance거나 subclass인 경우 True
+- issubclass(class, classinfo)
+  - class가 classinfo의 subclass면 True
+  - classinfo는 클래스 객체의 튜플일 수 있으며, classinfo의 모든 항목을 검사
+
+
+
+#### super()
+
+- 자식클래스에서 부모클래스를 사용하고 싶은 경우
+
+```python
+class Person:
+    def __init__(self, name, age, number, email):
+        self.name = name
+        self.age = age
+        self.number = number
+        self.email = email
+        
+class Student(Person):
+    def __init__(self, name, age, number, email, student_id):
+        self.name = name
+        self.age = age
+        self.number = number
+        self.email = email    
+        self.student_id = student_id
+```
+
+```python
+class Person:
+    def __init__(self, name, age, number, email):
+        self.name = name
+        self.age = age
+        self.number = number
+        self.email = email
+        
+class Student(Person):
+    def __init__(self, name, age, number, email, student_id):
+        # Person 클래스
+        super().__init__(name, age, number, email)
+        self.student_id = student_id
+```
+
+
+
+#### 메서드 오버라이딩(method overriding)
+
+- 상속 받은 메서드를 재정의
+  - 상속받은 클래스에서 같은 이름의 메서드로 덮어씀
+  - 부모 클래스의 메서드를 실행시키고 싶은 경우 super를 활용
+
+``` python
+class Person:
+    def __init__(self, name):
+        self.name = name
+    def talk(self):
+        print(f'반갑습니다. {self.name}입니다.')
+# 자식 클래스 - Professor
+class Professor(Person):
+    def talk(self):
+        print(f'{self.name}일세.')
+        
+# 자식 클래스 - Student
+class Student(Person):
+    super().talk()
+    print(f'저는 학생입니다.')
+    
+p1 = Professor('김교수')
+p1.talk()
+
+s1 = Student('김학생')
+s1.talk()
+```
+
+#### 상속 정리
+
+- 파이썬의 모든 클래스는 object로부터 상속
+- 부모 클래스의 모든 요소(속성, 메서드)가 상속
+- super()를 통해 부모 클래스의 요소를 호출할 수 있음
+- 메서드 오버라이딩을 통해 자식 클래스에서 재정의 가능(메서드 오버로딩은 파이썬에 없음)
+
+- 상속관계에서의 이름 공간은 인스턴스, 자식클래스, 부모클래스 순으로 탐색
+
+
+
+
+
+## 추가적으로 정리할 것
+
+다중상속 추상화 캡슐화 다형성
 
 Solid
+
+python MRO (class.__mro__)
+
