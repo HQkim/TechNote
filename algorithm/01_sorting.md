@@ -66,6 +66,24 @@ def Counting_Sort(A, B, k): # A는 입력배열, B는 정렬된 배열, C는 카
 
 
 
+#### 시간 복잡도
+
+- O(n^2)
+
+#### 선택 정렬
+
+```python
+def selectionSort(a):
+    for i in range(0, len(a)-1):
+        min = i
+        for j in range(i+1, len(a)):
+            if a[min] > a[j]:
+                min = j
+        a[i], a[min] = a[min], a[i]
+```
+
+
+
 ## 퀵 정렬 (Quick Sort)
 
 
