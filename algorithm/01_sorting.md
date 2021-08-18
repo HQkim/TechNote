@@ -27,8 +27,6 @@ def BubbleSort(arry):
 
 
 
-
-
 ## 카운팅 정렬 (Counting Sort)
 
 ***집합에 각 항목이 몇 개씩 있는지 세어서 정렬하는 알고리즘***
