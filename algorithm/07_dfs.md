@@ -2,7 +2,7 @@
 
 
 
-#### 수도 코드
+#### 수도 코드 - 스택
 
 ```
 visited[], stack[] 초기화
@@ -24,7 +24,7 @@ DFS(v)
 end DFS()
 ```
 
-#### 파이썬 코드
+#### 파이썬 코드1 - 스택
 
 ```python
 def dfs(s, v):
@@ -46,5 +46,36 @@ def dfs(s, v):
                 i = stack.pop()
             else:
                 i = 0
+                
+
+```
+
+#### 파이썬 코드 2 - 재귀함수 (SWEA 1219 길찾기)
+
+``` python
+def dfs_recurvise(v):
+  	global ans
+    if v == 99:			# (target)
+        ans = 1
+        return
+    
+    visited[v] = 1
+    
+    for w in adj_list[v]:
+        if not visited[w]:
+            dfs_recursive(w)
+
+for _ in range(10):
+    tc, N = list(map(int, input().split()))
+    road = list(map(int, input().split()))
+    
+    adj_list = [[] for _ in range(100)]
+    for i in range(N):
+        adj_list[road[2 * i]].append(road[2 * i +1])
+    
+    visited = [0] * 100
+    ans = 0
+    
+    print(f'{} {}'.format(tc, ans))
 ```
 
