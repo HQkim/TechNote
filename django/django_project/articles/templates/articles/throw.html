@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="/articles/catch/" method="GET">
+  <label>던질꺼:
+    <input type="text" name="message">
+  </label>
+  <label>던질꺼2
+    <input type="text" name="name">
+  </label>
+  <label>던질꺼3
+    <input type="text" name="age">
+  </label>
+  <input type="submit" value="Submit">
+</form>
+
+{% endblock content %}
+
+

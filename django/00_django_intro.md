@@ -1,0 +1,111 @@
+# 00_Django_Intro
+
+
+
+## Web Framework
+
+#### Django 
+
+*열심히 보라.4*
+
+- Django는 high-level Python Web framework
+- 빠른 개발과 깔끔하고 실용적인 디자인을 할 수 있음
+
+- 웹개발의 귀찮은 일들을 처리해주기 때문에, 바퀴를 다시 만들지 않고 원하는 앱을 개발하는데 집중할 수 있음
+  - DRY: Do not Reapeat Yourself (파이썬, 장고의 정신)
+
+#### Framework
+
+- 프로그래밍에서 특정 운영 체제를 위한 응용 프로그램 표준 구조를 구현하는 클래스와 라이브러리 모임
+- 재사용할 수 있는 수많은 코드를 프레임워크로 통합함으로써 개발자가 새로운 애플리케이션을 위한 표준 코드를 다시 작성하지 않아도 같이 사용할 수 있도록 도움
+- Application Framework 라고도 함
+
+- 밀키트, 프렌차이즈
+  - 정해진 순서대로 따라가면 원하는 결과를 얻을 수 있음
+
+- Framework가 탈것(포크레인)이라면, 라이브러리는 도구(삽)이다. 포크레인을 커스터마이징 하는게 정말 힘들지만 삽은 가능하다.
+- 장고는 로봇의 눈과 입을 채우면 동작하지만, 플라스크는 레고처럼 한땀한땀 만들어 나가는 프레임워크도 있다.
+
+#### Framework Architecture
+
+​	쉽게 이야기하면 노하우, 방법론
+
+- MVC Design Pattern (model-view-controller)
+- 소프트웨어 공학에서 사용되는 디자인 패턴 중 하나
+- 사용자 인터페이스로부터 프로그램 로직을 분리하여 애플리케이션의 시각적 요소나 이면에서 실행되는 부분을 서로 영향 없이 쉽게 고칠 수 있는 애플리케이션을 만들 수 있음
+- Django 는 MTV Pattern이라고 함 *열심히 보라*
+
+> 프로그래밍은 "데이터"가 어떻게 "행동/표현/계산"할지를 만드는 것이다.
+>
+> MVC에서 데이터가 M이고 V가 보여지는 것이고 C가 어떻게 보여줄지 조절하는 것이다.
+
+#### MTV Pattern
+
+- Model
+  - 응용 프로그램의 데이터 구조를 정의하고 데이터베이스의 기록을 관리(추가, 수정, 삭제)
+- Template
+  - 파일의 구조나 레이아웃을 정의
+  - 실제 내용을 보여주는 데 사용
+- View
+  - HTTP 요청을 수신하고 HTTP 응답을 반환
+  - Model을 통해 요청을 충족시키는데 필요한 데이터에 접근
+  - template에게 응답의 서식 설정을 맡김
+
+![image-20210831130238437](00_django_intro.assets/image-20210831130238437.png)
+
+## Django Intro
+
+> ### Django 시작하기
+
+- Django 설치 전 가상환경 생성 및 활성화
+- 프로젝트 이름 주의 사항
+  - Python이나 Django에서 사용 중인 키워드 및 "-"(하이픈) 사용 불가
+
+> ### 프로젝트 구조
+
+#### __init__.py
+
+- Python에게 이 디렉토리를 하나의 Python 패키지로 다루도록 지시
+
+#### asgi.py
+
+- Asynchronous Server Gateway Interface
+- django 애플리케이션이 비동기식 웹 서버와 연결 및 소통하는 것을 도움
+
+#### settings.py
+
+- 애플리케이션의 모든 설정
+
+#### urls.py
+
+- 사이트의 url과 적절한 views의 연결을 지정
+- 집배원이라고 생각하면 됨
+
+#### wsgi.py
+
+- Web Server Gateway Interface
+- django 애플리케이션이 웹서버와 연결 및 소통하는 것을 도움.
+- 배포할 때 쓰임
+
+#### manage.py
+
+- Django 프로젝트와 다양한 방법으로 상호작용 하는 커맨드라인 유틸리티
+
+> ### Application 생성
+
+#### 가상환경
+
+- venv를 이용해서 가상환경 설정
+
+#### gitignore
+
+- gitignore.io에서 venv, python, django, visualstudiocode로 생성
+
+
+
+
+
+### URL path converter 
+
+(*잘 봐두라*)
+
