@@ -109,3 +109,17 @@
 
 (*잘 봐두라*)
 
+
+
+## Django Model
+
+
+
+
+
+## 시험 팁
+
+1. LANGUAGE_CODE = 'ko-kr'
+   TIME_ZONE = 'Asia/Seoul'
+
+2. settings.py에서 앱 순서 중요
