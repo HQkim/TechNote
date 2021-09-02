@@ -57,9 +57,52 @@
 
 > ### Django 시작하기
 
-- Django 설치 전 가상환경 생성 및 활성화
+#### vscode 설정
+
+- Django
+- Excel Viewer
+
+- 설정 코드
+
+  `ctral+shift+p` -> `json` -> `Preferences: Open Settings(JSON)`
+
+  ```json
+  // settings.json
+  
+  {
+    ... 생략 ...,
+  
+    // Django
+    "files.associations": {
+      "**/*.html": "html",
+  	    "**/templates/**/*.html": "django-html",
+      "**/templates/**/*": "django-txt",
+      "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    "emmet.includeLanguages": {
+      "django-html": "html"
+    }
+  }
+  ```
+
+#### Django 시작
+
+```shell
+$ python -m venv venv					# venv폴더에 가상환경 만들기
+$ source venv/Script/activate 			# 가상환경 켜기, deactivate는 끄기
+$ pip install django					# 가상환경에서 django 설치
+$ pip freeze > requiremenst.txt			# pip list 출력하기
+$ django-admin startproject crud .		# project 시작하기. "."은 현재 폴더에 시작
+$ python manage.py startapp articles	# articles 앱 만들기, application명은 복수형 권장
+$ python manage.py runserver			# 서버 테스트하기
+```
+
 - 프로젝트 이름 주의 사항
   - Python이나 Django에서 사용 중인 키워드 및 "-"(하이픈) 사용 불가
+
+#### gitignore
+
+- gitignore.io에서 venv, python, django, visualstudiocode, windows로 생성
 
 > ### 프로젝트 구조
 
@@ -91,15 +134,75 @@
 
 - Django 프로젝트와 다양한 방법으로 상호작용 하는 커맨드라인 유틸리티
 
-> ### Application 생성
 
-#### 가상환경
 
-- venv를 이용해서 가상환경 설정
+> ### Application 구조
 
-#### gitignore
+#### admin.py
 
-- gitignore.io에서 venv, python, django, visualstudiocode로 생성
+- 관리자용 페이지를 설정 하는 곳
+
+#### apps.py
+
+- 앱의 정보가 작성된 곳
+
+#### models.py
+
+- 앱에서 사용하는 Model을 정의하는 곳
+
+#### tests.py
+
+- 프로젝트의 테스트 코드를 작성하는 곳
+
+#### views.py
+
+- view 함수들이 정의 되는 곳
+
+#### urls.py
+
+- 사이트의 url과 적절한 views의 연결을 지정
+- 어플리케이션의 urls.py는 ***직접***  만들어야함
+
+
+
+> ### Project & Application
+
+#### Project
+
+- 프로젝트는 앱의 집합
+- 프로젝트에는 여러 앱이 포함될 수 있음
+- 앱은 여러 프로젝트에 있을 수 있음
+
+#### Application
+
+- 앱은 실제 요청을 처리하고 페이지를 보여주고 하는 등의 역할을 담당
+- 일반적으로 앱은 하나의 역할 및 기능 단위로 작성
+
+
+
+> ### 앱 등록
+
+- 프로젝트에서 앱을 생성한 후에 사용하려면 **반드시** `setting.py` 에`INSTALLED_APPS`에 추가해야함
+- `INSTALLED_APPS`에 저장된 순서대로 앱이 실행된다.
+- 아래와 같은 순서로 추가하는 것이 권장됨.``
+
+```python
+INSTALLED_APPS = [
+    # Local apps
+    'articles',
+    
+    # Third party apps
+    'djangorestframework'
+    
+    # Django apps
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
 
 
 
@@ -121,5 +224,5 @@
 
 1. LANGUAGE_CODE = 'ko-kr'
    TIME_ZONE = 'Asia/Seoul'
-
 2. settings.py에서 앱 순서 중요
+3. app urls.py 자동 x
