@@ -226,3 +226,6 @@ INSTALLED_APPS = [
    TIME_ZONE = 'Asia/Seoul'
 2. settings.py에서 앱 순서 중요
 3. app urls.py 자동 x
+
+1. settings.py에 신규 앱 articles추가, 언어, 지역 ko-kr, Asia/Seoul 설정  2. MTV(model template view) 정의 및 MVC(model view controller)와의 차이    3. DTL(django template language)
+

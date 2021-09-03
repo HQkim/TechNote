@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+🎞Movies
+{% endblock title %}
+
+{% block index %}
+active
+{% endblock index %}
+
+{% block content %}
+<br>
+<h1 class="text-center fw-bold">MOVIES</h1>
+<br>
+{% for movie in movies  %}
+    <a href="{% url 'movies:detail' movie.pk %}" class="text-decoration-none text-black">{{ movie.title }}</a>
+    <hr>
+{% endfor %}
+{% endblock content %}

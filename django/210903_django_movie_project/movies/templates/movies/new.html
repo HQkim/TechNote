@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+✨NEW
+{% endblock title %}
+
+{% block create %}
+active
+{% endblock create %}
+
+{% block content %}
+<h1 class="fw-bold text-center">NEW</h1>
+
+<form action=" {% url 'movies:create' %}" method ="POST">
+    {% csrf_token %}
+  <div class="mb-3">
+    <label for="title" class="form-label fw-bold">TITLE </label>
+    <input type="text" class="form-control" id="title" name = "title">
+  </div>
+  <div class="mb-3">
+    <label for="overview" class="form-label fw-bold">Overview</label>
+    <textarea name="overview" id="overview" cols="30" rows="10" class="form-control"></textarea>
+  </div>
+    <label for="poster_path" class="form-label fw-bold">Poster Path </label>
+    <input type="text" class="form-control" id="poster_path" name = "poster_path">
+    <br>
+  <button type="submit" class="btn btn-primary">작성</button>
+</form>
+{% endblock content %}
