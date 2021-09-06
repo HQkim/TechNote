@@ -4,7 +4,7 @@
 
 ## Web Framework
 
-#### Django *
+#### Django 
 
 - Django는 high-level Python Web framework
 - 빠른 개발과 깔끔하고 실용적인 디자인을 할 수 있음
@@ -31,7 +31,7 @@
 - MVC Design Pattern (model-view-controller)
 - 소프트웨어 공학에서 사용되는 디자인 패턴 중 하나
 - 사용자 인터페이스로부터 프로그램 로직을 분리하여 애플리케이션의 시각적 요소나 이면에서 실행되는 부분을 서로 영향 없이 쉽게 고칠 수 있는 애플리케이션을 만들 수 있음
-- Django 는 MTV Pattern이라고 함 *
+- Django 는 MTV Pattern이라고 함
 
 > 프로그래밍은 "데이터"가 어떻게 "행동/표현/계산"할지를 만드는 것이다.
 >
@@ -203,24 +203,5 @@ INSTALLED_APPS = [
 
 
 
-### URL path converter 
 
-(*잘 봐두라*)
-
-
-
-## Django Model
-
-
-
-
-
-## 시험 팁
-
-1. LANGUAGE_CODE = 'ko-kr'
-   TIME_ZONE = 'Asia/Seoul'
-2. settings.py에서 앱 순서 중요
-3. app urls.py 자동 x
-
-1. settings.py에 신규 앱 articles추가, 언어, 지역 ko-kr, Asia/Seoul 설정  2. MTV(model template view) 정의 및 MVC(model view controller)와의 차이    3. DTL(django template language)
 
