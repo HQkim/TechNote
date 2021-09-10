@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ question.title }}</h1>
+
+<div>
+  <p>created_at: {{ question.created_at }}</p>
+  <p>updated_at: {{ question.updated_at }}</p>
+</div>
+
+<h2>{{ question.category }}</h2>
+<h2>{{ question.get_category_display }}</h2>
+
+<p>{{ question.content|linebreaksbr }}</p>
+
+<div>
+  <a href="{% url 'board:index' %}">
+    <button>back</button>
+  </a>
+</div>
+
+<div>
+  <a href="{% url 'board:update' question.pk %}">
+    <button>eidt</button>
+  </a>
+</div>
+
+<form action="{% url 'board:delete' question.pk %}" method="POST">
+  {% csrf_token %}
+  <button>delete</button>
+</form>
+
+{% endblock content %}
+
+
