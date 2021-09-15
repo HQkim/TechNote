@@ -1,6 +1,6 @@
 # 02_Django_Authentication
 
-[목차 테스트](##django-autentication-system)
+[목차 테스트](#django-autentication-system)
 
 ## Autentication System 1
 
