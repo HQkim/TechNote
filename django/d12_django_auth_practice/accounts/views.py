@@ -60,8 +60,8 @@ def delete(request):
     return redirect('articles:index')
 
 
-@login_required
 @require_http_methods(['GET', 'POST'])
+@login_required
 def update(request):
     if request.method == 'POST':
         form = CustomUserChangeForm(request.POST, instance=request.user)
