@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h1>글 제목: {{ review.title }}</h1>
+<h1>영화 제목: {{ review.movie_title }} </h1>
+<h3>별점: {{ review.get_rank_display }}</h3>
+<h4>좋아요 개수: {{ review.like.count }}</h4>
+
+{% if request.user.is_authenticated %}
+<form action="{% url 'community:like_review' review.pk %}" method="POST">
+  {% csrf_token %}
+  {% if request.user in review.like.all %}
+    <button class='btn'><i class="fas fa-heart fa-lg" style="color:crimson"></i></button>
+  {% else %}
+    <button class='btn'><i class="far fa-heart fa-lg" style="color:black"></i></button>
+  {% endif %}
+</form>
+{% endif %}
+<br>
+
+<p>리뷰 내용: {{ review.content|linebreaksbr }}</p>
+
+{% comment %} 댓글 목록 {% endcomment %}
+{% include 'community/_comment_list.html' %}
+
+{% comment %} 댓글 작성 form {% endcomment %}
+{% include 'community/_comment_form.html' %}
+
+
+
+{% endblock content %}
