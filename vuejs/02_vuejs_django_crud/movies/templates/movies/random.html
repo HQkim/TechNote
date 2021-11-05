@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Random</h1>
+
+
+  <div id="app">
+  <button @click="getrandomMovie">Random</button>
+
+    <div v-for="movie in randomMovies" :key="movie.pk">
+        <h3> [[ movie.title ]]</h3>
+        <p>[[ movie.overview ]]</p>
+        <button @click="redirectDetail(movie.pk)">[detail]</button>
+        {% comment %} <p>[[ movie.pk ]]</p>   {% endcomment %}
+         {% comment %} <a href="{% url 'movies:detail' [[ key ]] %}" class="text-decoration-none">[detail]</a> {% endcomment %}
+        <hr>
+    </div>
+
+  </div>
+    <a href="{% url 'movies:index' %}">Back</a>
+
+{% endblock %}
+
+
+{% block script %}
+    <!-- vue.js-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Lodash-->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+    <script>
+        const app = new Vue ({
+            delimiters: ["[[", "]]"],
+            el: '#app',
+            data: {
+                movies: [],
+                randomMovies: [],
+
+            },
+            methods: {
+                getMovies: function (){
+                    const movieURL =  "http://127.0.0.1:8000/movies/random/"
+                    const vm = this
+                    axios({
+                        method: 'get',
+                        url: movieURL,
+                        headers: {'x-requested-with': 'XMLHttpRequest'}
+                    })
+                        .then(response => {
+                        vm.movies = response.data
+                        console.log(response.data)
+                        
+                    })
+                },
+                getrandomMovie: function (){
+                    this.randomMovies = _.sampleSize(this.movies, 10)
+                    console.log(this.randomMovies)
+                },
+                redirectDetail: function (pk) {
+                    window.location = `/movies/${pk}/`
+                }
+            },
+            created: function () {
+                this.getMovies()
+            }
+        })
+        
+    </script>
+
+{% endblock script %}

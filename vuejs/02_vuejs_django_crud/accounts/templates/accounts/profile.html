@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ person.username }}님의 프로필</h1>
+
+{% with followings=person.followings.all followers=person.followers.all %}
+  <div>
+    <div id="follow-count">
+      팔로잉 : {{ followings|length }} / 팔로워 : {{ followers|length }}
+    </div>
+    {% if request.user != person %}
+      <div>
+        <form id="follow-form" data-user-id="{{ person.pk }}">
+          {% csrf_token %}
+          {% if request.user in followers %}
+            <button>언팔로우</button>
+          {% else %}
+            <button class="btn-primary">팔로우</button>
+          {% endif %}
+        </form>
+      </div>
+    {% endif %}
+  </div>
+{% endwith %}
+
+
+
+<a href="{% url 'community:index' %}">[back]</a>
+
+{% endblock %}
+{% block script %}
+<script>
+  const form = document.querySelector('#follow-form')
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  form.addEventListener('submit', function (event) {
+    event.preventDefault()
+    const userId = event.target.dataset.userId
+    //방법이 2가지임
+    // axios.post(http://127.0.0.1:8000/accounts/${userId}/follow/, {}, {headers: {'X-CSRFToken': csrftoken}})
+    axios({
+      method: 'post',
+      url: `http://127.0.0.1:8000/accounts/${userId}/follow/`,
+      headers: {'X-CSRFToken': csrftoken },
+    })
+    .then(response => {
+      console.log(response)
+      const followersCount = response.data.followers_count
+      const followingsCount = response.data.followings_count
+      const followed = response.data.followed
+
+      const followCount = document.querySelector('#follow-count')
+
+      followCount.innerText = `팔로잉 : ${followingsCount} / 팔로워 : ${followersCount}`
+
+      const followBtn = document.querySelector('#follow-form > button')
+      /*
+      if (followed) {
+        followBtn.innerText = '언팔로우'
+      } else {
+        followBtn.innerText = '팔로우'
+      }
+      */
+      // followBtn.classList.toggle('btn-secondary')
+      // followBtn.classList.toggle('btn-primary')
+      if (followed) {
+        followBtn.innerText = '언팔로우'
+        followBtn.setAttribute('class', 'btn-secondary')
+      } else {
+        followBtn.innerText = '팔로우'
+        followBtn.setAttribute('class', 'btn-primary')
+      }
+    })
+    .catch((error) => {
+          if (error.response.status == 401) {
+            window.location.href = '/accounts/login/'
+          }
+    })
+  })
+
+</script>
+{% endblock script %}
