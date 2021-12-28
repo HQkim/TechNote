@@ -1,4 +1,18 @@
-# Vue CLI 프로젝트 기반 DevOps 개발환경 실습
+# Vue CLI 프로젝트 기반 DevOps 개발환경 실습 - 김현규
+
+#### <목차>
+
+[개요](#개요)
+
+[Vue 프로젝트 생성 및 로컬 실행](#Vue 프로젝트 생성 및 로컬 실행)
+
+[GitHub에 코드 push 및 Pages에 수동 배포](#GitHub에 코드 push 및 Pages에 수동 배포)
+
+[GitHub Actions workflow로 배포 자동화](#GitHub Actions workflow로 배포 자동화)
+
+[테스트 실패로 인해 자동으로 배포가 되지 않는 것을 확인하기](#테스트 실패로 인해 자동으로 배포가 되지 않는 것을 확인하기)
+
+
 
 ## :scroll:개요
 
@@ -55,14 +69,14 @@ $ yarn serve
 
 ## :snail:GitHub에 코드 push 및 Pages에 수동 배포
 
-#### 1. GitHub에 vue-devops 프로젝트 생성
+#### 1. GitHub에 vue-devops 레포지토리 생성
 
 #### 2. 원격 저장소 설정 및 코드 푸시
 
 #### 3. Gihub Pages로 배포하기 위한 라이브러리 추가, package.json 수정
 
-```
-yarn add gh-pages -D
+```shell
+$ yarn add gh-pages -D
 ```
 
 ```json
@@ -97,15 +111,15 @@ module.exports = {
 }
 ```
 
-- 만약 vue-devops대신 <github_id>.github.io 이름으로 Github pages 대표 repository를 만들게 되면 이 설정은 필요 없고 접속할 주소도 https://<github_id>.github.io로 sub path 없이 가능
+- 만약 vue-devops대신 <github_id>.github.io 이름으로 Github pages 대표 repository를 만들게 되면 이 설정은 필요 없고 접속할 주소도 https://<github_id>.github.io로 sub path 없이 가능 [참고](https://velog.io/@byungjur_96/vue.js-Github-Pages%EB%A1%9C-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0/)
 - 여기서는 이미 다른 용도로 사용중인 경우를 고려하여 별도 하위 publicPath를 사용
 
 ![image-20211224205405129](Vue_Cli_Github_Pages.assets/image-20211224205405129.png)
 
 #### 5. `yarn deploy` 명령을 실행하면 빌드 된 정적 파일을 원격 저장소의 gh-pages 브랜치를 생성해서 푸시됨
 
-```
-yarn deploy
+```shell
+$ yarn deploy
 ```
 
 - 만약 로그인을 실패해서 재시도 할 때 아래와 같은 에러가 발생하면 yarn clean 후 재시도
@@ -113,6 +127,8 @@ yarn deploy
   ![image-20211224205459229](Vue_Cli_Github_Pages.assets/image-20211224205459229.png)
 
 #### 6. https://<github_id>.github.io/vue-devops 에 들어가서 페이지 구동 확인
+
+![image-20211228125059431](Vue_Cli_Github_Pages.assets/image-20211228125059431.png)
 
 <br/>
 
@@ -136,7 +152,7 @@ yarn deploy
 
 ![image-20211228104741093](Vue_Cli_Github_Pages.assets/image-20211228104741093.png)
 
-![image-20211228104038300](Vue_Cli_Github_Pages.assets/image-20211228104038300.png)
+![image-20211228125240505](Vue_Cli_Github_Pages.assets/image-20211228125240505.png)
 
 ```yml
 # This is a basic workflow to help you get started with Actions
@@ -181,7 +197,7 @@ jobs:
 
 ![image-20211224210313722](Vue_Cli_Github_Pages.assets/image-20211224210313722.png)
 
-#### 3. git pull을 해서 Deployment.yml을 내려받고. App.vue 파일의 Helloworld.vue 컴포넌트의 msg에 본인의 이름을 넣기
+#### 3. git pull을 해서 Deployment.yml을 내려받고. App.vue 파일의 props 데이터인 msg에 본인의 이름을 넣기
 
 ![image-20211228110247545](Vue_Cli_Github_Pages.assets/image-20211228110247545.png)
 
@@ -231,7 +247,7 @@ jobs:
           publish_dir: ./dist
 ```
 
-#### 5. 커밋 푸쉬하여 Workflow 동작 결과(아래서 2번째)와 자동 배포된 사이트 내용을 확인
+#### 5. 커밋 푸쉬하여 Workflow 동작 결과와 자동 배포된 사이트 내용을 확인
 
 ![image-20211228110345319](Vue_Cli_Github_Pages.assets/image-20211228110345319.png)
 
@@ -242,6 +258,8 @@ jobs:
 <br/>
 
 ## :heavy_check_mark:테스트 실패로 인해 자동으로 배포가 되지 않는 것을 확인하기
+
+테스트를 집어넣어 빌드상의 오류 등이 발생했을 때 배포되지 않도록 하기.
 
 #### 1.Workflow파일(Deployment.yml)에서 yarn install, build사이에 다음의 내용을 추가하기
 
@@ -296,11 +314,13 @@ jobs:
 
 HelloWorld.vue에서 {{ msg }} 부분을 일반 텍스트로 바꿔서 props data를 사용하지 않도록 하면 에러가 난다.
 
-이를 GitHub Actions에서 확인하면 아래와 같다.
+![image-20211228131136460](Vue_Cli_Github_Pages.assets/image-20211228131136460.png)
+
+이를 푸시해서 GitHub Actions에서 확인하면 아래와 같다.
 
 ![image-20211224214541781](Vue_Cli_Github_Pages.assets/image-20211224214541781.png)
 
-
+![image-20211228105502235](Vue_Cli_Github_Pages.assets/image-20211228105502235.png)
 
 
 
