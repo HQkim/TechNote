@@ -29,5 +29,3 @@
 `psvm` + `tap` : public static void main 자동완성
 
 `ctrl` + `p` : 쓸 수 있는 메소드 보기
-
-`ctrl` + `e` : 최근에 본 파일들 목록 불러오기(바로 검색도 가능)
