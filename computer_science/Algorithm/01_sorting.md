@@ -186,12 +186,51 @@ print("after:", array)
 
 ## 퀵 정렬 (Quick Sort)
 
+> 분할 정복과 pivot을 사용하여 정렬을 수행하는 알고리즘.
 
+#### 정렬 과정
+
+1. 정렬할 배열(array)의 길이가 1 이하면 그대로 리턴한다.
+2. pivot으로 잡을 배열의 값 하나를 정한다. 맨 앞이나 맨 뒤, 혹은 전체 배열 값 중 중간값이나 랜덤 값으로 정한다. 
+3. 분할을 진행하기 전에, 비교를 진행하기 위해 가장 왼쪽 배열의 인덱스를 저장하는 left 변수(배열), 가장 오른쪽 배열의 인덱스를 저장한 right 변수(배열) 그리고 pivot point의 값과 같은 값들을 저장할 eqaul 변수(배열)를 만든다.
+4. array를 순회하면서 pivot의 값보다 작은 값들은 left로 큰 값들은 right로 같은 값들은 eqaul에 넣어준다.
+5. 그리고 재귀적으로 left, right에 대해서도 1-3의 과정을 한 후에 최종적으로 left, equl, right를 합친 배열을 리턴한다.
+
+![img](01_sorting.assets/Quicksort-example.gif)
 
 #### 시간 복잡도
 
 - 최악: O(N^2)
 - 최선: O(NlogN)
+
+####  코드
+
+```python
+array = [8,4,6,2,5,1,3,7,9,9]
+
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    pivot = arr[len(arr) // 2]
+    left = []
+    eqaul = []
+    right = []
+
+    for num in arr:
+        if num < pivot:
+            left.append(num)
+        elif num > pivot:
+            right.append(num)
+        else:
+            eqaul.append(num)
+    
+    return quick_sort(left) + eqaul + quick_sort(right)
+
+print(f'정렬전: {array}')
+print(f'정렬후: {quick_sort(array)}')
+        
+```
 
 
 
