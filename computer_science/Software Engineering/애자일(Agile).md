@@ -109,7 +109,7 @@ PO와 Developent Team이 가치(Value)와 원칙(Principle)으로 성공적으�
 
 ###  스크럼 진행 순서
 
-![Scrum framework roles and process.](02_%EC%95%A0%EC%9E%90%EC%9D%BC(Agile).assets/62793694e251ed3442308a01_differences-lean-agile-scrum-scrum-process.jpeg)
+![Scrum framework roles and process.](%EC%95%A0%EC%9E%90%EC%9D%BC(Agile).assets/62793694e251ed3442308a01_differences-lean-agile-scrum-scrum-process.jpeg)
 
 이미지 출처 : https://brainhub.eu/blog/differences-lean-agile-scrum/
 

@@ -6,7 +6,7 @@
 
 ### Monolithic Architecture
 
-![img](01_%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98(MSA).assets/0B0c8qxYMnRFfswa-.png)
+![img](MSA.assets/0B0c8qxYMnRFfswa-.png)
 
 - 소프트웨어의 모든 구성요소가 한 프로젝트에 통합되어 있는 형태
 - 동일한 개발 툴을 사용해 개발되며 개포 및 테스트도 하나의 애플리케이션만 수행하면 되기 때문에 개발 및 환경설정이 간단하다.
@@ -44,7 +44,7 @@
 
 **API Gateway**
 
-![img](01_%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98(MSA).assets/image2.1b8337e.48cb31c29e69a22228d12fa80c174ddf.png)
+![img](MSA.assets/image2.1b8337e.48cb31c29e69a22228d12fa80c174ddf.png)
 
 - MSA는 각 서비스가 다른 서버에 분리되어 있기 때문에 서버 URL이 각기 다르다. 
 - 이때 API Gateway는 API 서버 앞단에서 모든 API 서버들의 End-Point를 단일화하여 묶어주는 역할을 한다. 
