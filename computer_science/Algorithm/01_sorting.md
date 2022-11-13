@@ -44,13 +44,14 @@ def bubble_sort(arry):
 #### 코드
 
 ```python
-def selection_sort(a):
-    for i in range(0, len(a)-1):
-        min = i
-        for j in range(i+1, len(a)):
-            if a[min] > a[j]:
-                min = j
-        a[i], a[min] = a[min], a[i]
+def selection_sort(arry):
+    n = len(arry)
+    for i in range(n):
+        min_ind = i
+        for j in range(i+1, n):
+            if arry[j] < arry[min_ind]:
+                min_ind = j
+        arry[i], arry[min_ind] = arry[min_ind], arry[i]
 ```
 
 
@@ -112,7 +113,7 @@ print("after:", array)
 
 ```python
 def counting_sort(A, B, k): # A는 입력배열, B는 정렬된 배열, C는 카운트 배열
-    C = [0] * k
+    C = [0] * (k + 1)
     for i in range(0, len(B)): # 각 정수를 카운팅
         C[A[i]] += 1
         
@@ -120,8 +121,8 @@ def counting_sort(A, B, k): # A는 입력배열, B는 정렬된 배열, C는 카
         C[i] += C[i-1]
     
     for i in range(len(B)-1, -1, -1): # 끝에서부터 탐색, stable sorting 위함
-        B[C[A[i]-1]] = A[i]			# A[i]에 해당하는 수의 위치를 C에서 찾아서 B에 할당
-        C[A[i]] -= -1				# C[A[i]]의 값을 줄이면 다음 A[i]는 한칸 앞쪽에 B에 할당
+        B[C[A[i]]-1] = A[i]			# A[i]에 해당하는 수의 위치를 C에서 찾아서 B에 할당
+        C[A[i]] -= 1				# C[A[i]]의 값을 줄이면 다음 A[i]는 한칸 앞쪽에 B에 할당
 ```
 
 
